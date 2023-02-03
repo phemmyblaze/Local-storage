@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="form">
+            <form method="post">
+                <div>
+                    <label for="">email: </label><br>
+                    <input type="email" placeholder="email" id="email">
+                </div>
+                <div>
+                    <label for="">password: </label><br>
+                    <input type="password" placeholder="password" id="password">
+                </div>
+                <button type="button">submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+
+        let user = [];
+        let button = document.getElementsByTagName('button')[0];
+        button.addEventListener('click', function() {
+
+        let email = document.getElementById('email').value;
+        let password = document.getElementById("password").value;
+        
+
+        
+        let userTracker = [];
+        let check_db = JSON.parse(localStorage.getItem("formdata"))
+        
+        for (let i = 0; i < check_db.length; i++){
+            if(check_db[i].email == email && check_db[i].password == password){
+                userTracker.push(check_db[i].email && check_db[i].password);
+            }
+            break;
+        }
+        if(userTracker.length > 0){
+            window.location.href="https://mail.yahoo.com//";
+            console.log(userTracker)
+        }else{
+            alert(`You are not registered with Google`)
+            localStorage.setItem("formdata", JSON.stringify(user))
+        }
+
+        })
+
+        
+    </script>
+
+    
+    
+    
+</body>
+</html>

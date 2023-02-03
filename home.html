@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <form method="post">
+                <div>
+                    <label for="">Username: </label><br>
+                    <input type="text" placeholder="username" id="username">
+                </div>
+                <div>
+                    <label for="">email: </label><br>
+                    <input type="email" placeholder="email" id="email">
+                </div>
+                <div>
+                    <label for="">password: </label><br>
+                    <input type="password" placeholder="password" id="password">
+                </div>
+                <button type="button">submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let user = []
+        let button = document.getElementsByTagName("button")[0]
+        button.addEventListener("click" ,function(){
+            let username = document.getElementById('username').value 
+            let email = document.getElementById("email").value 
+            let password = document.getElementById("password").value 
+            if(username == "" && email == "" && password == ""){
+                alert("please fill the form")
+            }else{
+                let check_db = JSON.parse(localStorage.getItem("formdata"))
+                if(check_db == null){
+                    let userData ={
+                        username: username,
+                        email: email,
+                        password: password
+                    }
+                    user.push(userData)
+                    console.log(user);
+                    localStorage.setItem("formdata", JSON.stringify(user))
+                }else{
+                    let userTracker = []
+                    for (let i = 0; i < check_db.length; i++){
+                        if(check_db[i].email == email){
+                            userTracker.push(check_db[i].email)
+                        }
+                        break;
+                    }
+                    if(userTracker.length > 0){
+                        alert("user already exists")
+                    }else{
+                        let newUserData ={
+                            username: username,
+                            email: email,
+                            password: password
+                        }
+                        user.push(newUserData)
+                        // console.log(user);
+                        localStorage.setItem("formdata", JSON.stringify(user))
+                    }
+                }
+            }
+        })
+
+        window.onload = function(){
+            let getOnLoad = JSON.parse(localStorage.getItem("formdata"));
+
+           if (getOnLoad != null) {
+
+            localStorage.setItem("newStorage", JSON.stringify(getOnLoad));
+
+            let userchecker = JSON.parse(localStorage.getItem("newStorage"));
+            console.log(userchecker);
+
+
+            userchecker.forEach ((element) => {
+                console.log(element)
+                console.log(index)
+                user.push(element)
+            });
+
+
+            localStorage.removeItem("newStorage");
+           } 
+        }
+
+    </script>
+</body>
+</html>
