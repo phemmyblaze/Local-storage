@@ -26,6 +26,8 @@
 
     <script>
 
+        ////This is to validate user login details 
+
         let user = [];
         let button = document.getElementsByTagName('button')[0];
         button.addEventListener('click', function() {
@@ -44,6 +46,8 @@
             }
             break;
         }
+
+        ///IF the details is correct then direct them to that page.
         if(userTracker.length > 0){
             window.location.href="https://mail.yahoo.com//";
             console.log(userTracker)
