@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <table id="con">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>email</th>
+                    <th>password</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
+
+
+    <script>
+        let getter = JSON.parse(localStorage.getItem("formdata"))
+
+        getter.forEach((element, index) => {
+            console.log(element.username, index)
+            let tbody = document.createElement("tbody")
+
+            tbody.innerHTML = `
+                <tr>
+                    <td>${element.username}</td>
+                    <td>${element.email}</td>
+                    <td>${element.password}</td>
+                    
+                </tr>
+            `
+
+            document.getElementById('con').append(tbody)
+
+        })
+
+
+    </script>
+</body>
+</html> 
